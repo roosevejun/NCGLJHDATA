@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="ERROR">
+    <properties>
+        <property name="filename">logs/sysLog.log</property>
+    </properties>
+
+    <appenders>
+        <Console name="Console"   target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8"
+                           pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5level - [%logger{1} - %M] %msg%n"/>
+        </Console>
+        <File name="File" fileName="${filename}">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5level - [%logger{1} - %M] %msg%n"/>
+            <SizeBasedTriggeringPolicy size="1 k"/>
+        </File>
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+        </root>
+        <logger name="com.tongtu" level="DEBUG" additivity="true">
+            <appender-ref ref="File"/>
+        </logger>
+        <logger name="info" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="error" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="File"/>
+        </logger>
+    </loggers>
+
+</configuration>
